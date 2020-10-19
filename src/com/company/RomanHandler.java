@@ -1,7 +1,10 @@
 package com.company;
 
 public class RomanHandler {
-    public String convertArabicToRoman(int arabicNumb){
+    public String convertArabicToRoman(int arabicNumb, boolean isNegative){
+        if (isNegative) {
+            arabicNumb = Math.abs(arabicNumb);
+        }
         String theRomanNumeral = "";
         if(arabicNumb > 10){
             int tens = arabicNumb/10;
@@ -84,6 +87,9 @@ public class RomanHandler {
                 break;
             case 9:
                 foundRoman = "IX";
+                break;
+            case 10:
+                foundRoman = "X";
                 break;
         }
 

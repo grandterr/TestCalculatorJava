@@ -18,6 +18,7 @@ public class Main {
         String currentOperation;
         String leftPart;
         String rightPart;
+        boolean isNegative = false;
 
         while(true) {
             userCommand = userInput.nextLine();
@@ -48,8 +49,17 @@ public class Main {
                     leftPart = romanNumeralLeft.getRomanNumeral();
                     rightPart = romanNumeralRight.getRomanNumeral();
                     result = arabicNumberHandler.doOperation(leftPart, rightPart, currentOperation);
-                    romanResult = romanHandler.convertArabicToRoman(result);
-                    System.out.println(romanResult);
+
+                    if (result >= 0) {
+                        isNegative = false;
+                        romanResult = romanHandler.convertArabicToRoman(result, isNegative);
+                        System.out.println(romanResult);
+                    } else if (result < 0) {
+                        isNegative = true;
+                        romanResult = romanHandler.convertArabicToRoman(result, isNegative);
+                        System.out.println("-" + romanResult);
+                    }
+
                 } else {
                     throw new WrongNumberException();
                 }
